@@ -2,7 +2,6 @@ package generatefileload
 
 import (
 	"fmt"
-	"math/rand"
 	"os"
 )
 
@@ -43,7 +42,8 @@ func (lg *LoadGenerator) WriteToFile() {
 		return
 	}
 
-	selectedRow := rand.Intn(lg.RowNumbers + 1)
+	// selectedRow := rand.Intn(lg.RowNumbers + 1)
+	selectedRow := 8889
 	fmt.Print("error will be on line: ")
 	fmt.Println(selectedRow + 1)
 	for i := 0; i < lg.RowNumbers; i++ {

@@ -1,15 +1,14 @@
-package main
+package benchmark
 
 import (
 	concurrentsearch "conccurent_File_searcher/ConcurrentSearch"
 	generatefileload "conccurent_File_searcher/GenerateFileLoad"
 	"fmt"
 	"sync"
-	"time"
+	"testing"
 )
 
-func main() {
-	start := time.Now()
+func perf_test() {
 	var wg sync.WaitGroup
 	lg := generatefileload.LoadGenerator{
 		FullFileName: "C:\\Users\\gupta\\concurrent_file_searcher_go\\LoadDirectory\\test.txt",
@@ -20,7 +19,7 @@ func main() {
 
 	lg.WriteToFile()
 
-	workerThreads := 20
+	workerThreads := 100
 
 	fmt.Println("workers: ", workerThreads)
 
@@ -42,8 +41,10 @@ func main() {
 	}
 
 	wg.Wait()
+}
 
-	end := time.Now()
-	elapsed := end.Sub(start)
-	fmt.Println("Time elapsed:", elapsed)
+func BenchmarkSum(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		perf_test()
+	}
 }

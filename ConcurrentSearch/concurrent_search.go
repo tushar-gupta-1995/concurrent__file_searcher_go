@@ -6,6 +6,7 @@ import (
 	"os"
 	"strings"
 	"sync"
+	"time"
 )
 
 type LineDetails struct {
@@ -58,6 +59,7 @@ func (css *ConcurrentSearchStruct) ReadChannel(id int, wg *sync.WaitGroup) {
 		// fmt.Println("worker at your service: ")
 		// fmt.Println(id)
 		rowValue := rowDetail.RowValue
+		time.Sleep(1 * time.Millisecond)
 		if strings.Contains(rowValue, "overr") {
 			fmt.Print("found at line: ")
 			fmt.Println(rowDetail.LineNo)
